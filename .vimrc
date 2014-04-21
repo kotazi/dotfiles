@@ -17,6 +17,12 @@ if has('vim_starting')
 endif
 
 "-----------------------------------------------------------------
+"enable mouse click for iTerm
+"-----------------------------------------------------------------
+if has("mouse") " Enable the use of the mouse in all modes
+    set mouse=a
+endif
+"-----------------------------------------------------------------
 "neobundle.vim main module
 "-----------------------------------------------------------------
 NeoBundle "Shougo/neocomplcache" "code complete
@@ -24,7 +30,7 @@ NeoBundle "scrooloose/syntastic" "syntax checker
 NeoBundle "Shougo/neosnippet" "code snipets
 NeoBundle "Shougo/neosnippet-snippets" "snipet file
 NeoBundle "honza/vim-snippets" "code snipets
-"NeoBundle "davidhalter/jedi-vim" 
+NeoBundle "davidhalter/jedi-vim" 
 NeoBundle "Shougo/vimshell.git" "shell of vim
 NeoBundle "thinca/vim-quickrun" "quick run
 NeoBundle "bling/vim-airline" "airline of status bar
@@ -35,15 +41,13 @@ NeoBundle "jelera/vim-javascript-syntax" "javascript syntax
 NeoBundle 'pangloss/vim-javascript' "javascript syntax
 NeoBundle "itspriddle/vim-javascript-indent" "javascript indent
 NeoBundle 'jiangmiao/simple-javascript-indenter' "simple javascript indent
-NeoBundle 'hail2u/vim-css3-syntax' "vim css3 syntax
-"NeoBundle 'skammer/vim-css-color' "vim css color this plugin is too slow in not using gvim
-NeoBundle 'othree/html5.vim' "vim html5 syntax
 NeoBundle "leshill/vim-json" "json syntax
 NeoBundle "digitaltoad/vim-jade" "jade syntax
 NeoBundle "wavded/vim-stylus" "stylus syntax
 NeoBundle "tomasr/molokai" "color scheme
 NeoBundle "itchyny/landscape.vim" "color scheme 2
 NeoBundle 'altercation/vim-colors-solarized' "color scheme 3
+NeoBundle 'mustache/vim-mustache-handlebars' "hbs syntax
 "-----------------------------------------------------------------
 "neobundle.vim hooter
 "-----------------------------------------------------------------
@@ -113,7 +117,6 @@ syntax on
 "colorscheme molokai need for
 "http://fixture.jp/blog/2012/08/patch-to-disable-molokai-bgcolor/
 colorscheme molokai
-let g:rehash256 = 1
 "colorscheme landscape
 "colorscheme solarized
 "set background=dark
@@ -172,9 +175,8 @@ let NERDTreeWinSize=20
 "-----------------------------------------------------------------
 "jedi-vim
 "-----------------------------------------------------------------
-"jedi is too slow so, comment out this setting
-"let g:jedi#completions_enabled=1
-"let g:jedi#popup_on_dot = 0
+let g:jedi#completions_enabled=1
+let g:jedi#popup_on_dot = 0
 "let g:jedi#auto_initialization=0
 "let g:jedi#popup_select_first=0
 "-----------------------------------------------------------------
@@ -208,8 +210,11 @@ let g:tagbar_width = 20
 "auto open tagbar
 "autocmd filetype * nested :call tagbar#autoopen(1)
 autocmd FileType * nested :call tagbar#autoopen(0)
-
-"------------------------------------------------------------------
-"css and html
-"------------------------------------------------------------------
-"let g:cssColorVimDoNotMessMyUpdatetime = 1 
+"----------------------------------------------------------------
+"key remap for ()
+"----------------------------------------------------------------
+let g:mustache_abbreviations = 1
+"----------------------------------------------------------------
+"yank to clipboard
+"----------------------------------------------------------------
+set clipboard=unnamed,autoselect
